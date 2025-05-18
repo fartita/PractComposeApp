@@ -11,37 +11,45 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.practcomposeapp.data.Contact
+import com.example.practcomposeapp.ui.theme.ContactDetails
 import com.example.practcomposeapp.ui.theme.PractComposeAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
         setContent {
-            PractComposeAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+           ContactDetailsPreviewSecond()
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    @Preview(name = "portrait", showSystemUi = true)
+    @Composable
+    fun ContactDetailsPreview() {
+        PractComposeAppTheme(contact = Contact(
+            name = "Евгений",
+            surname = "Андреевич",
+            familyName = "Лукашин",
+            phone = "+7 495 495 95 95",
+            address = "г. Москва, 3-я улица Строителей, д. 25, кв. 12",
+            isFavorite = true,
+            email = "lucashin@practicum.ru"
+        ))
+    }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PractComposeAppTheme {
-        Greeting("Android")
+    @Preview(name = "portrait", showSystemUi = true)
+    @Composable
+    fun ContactDetailsPreviewSecond() {
+        PractComposeAppTheme(
+            contact = Contact(
+                name = "Василий",
+                familyName = "Кузякин",
+                phone = "+792321",
+                address = "Ивановская область, дер. Крутово, д.4",
+                imageRes = R.drawable.car,
+            )
+        )
     }
 }
+
